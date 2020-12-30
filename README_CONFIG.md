@@ -12,3 +12,5 @@ S3_SECRET_KEY=(string)
 *CONFIGURATION
 In config/index.js you have al the config info is you want to save your image in AWS S3 you have to put saveOnS3 in true and complete S3_ACCESS_KEY_ID S3_SECRET_KEY  
 in your .env file.
+
+*Run command npm install to install all dependencies
