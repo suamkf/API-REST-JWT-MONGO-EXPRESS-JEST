@@ -22,7 +22,7 @@ const config = {
     folder:"image",
     accessKeyId: process.env.S3_ACCESS_KEY_ID,
     secretAccessKey: process.env.S3_SECRET_KEY,
-    saveOnS3:true,
+    saveOnS3:false,
   }
 };
 
