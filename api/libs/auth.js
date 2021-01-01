@@ -1,18 +1,19 @@
-const passportJWT = require("passport-jwt");
+const passportJWT = require ('passport-jwt')
 
 const config = require("../../config");
 const logger = require("../../ultis/logger");
 const { getUserById } = require("../resurces/user/user.controller");
-const { errorHandler } = require("./errorHandler");
+
 
 const jwtOptions = {
   secretOrKey: config.jwt.secret,
   jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
-module.exports = passportJWT.Strategy(
+module.exports = new passportJWT.Strategy(
   jwtOptions,
-  errorHandler((Payload, next) => {
-    return getUserById(Payload._id).then((users) => {
+  (Payload, next) => {
+   getUserById(Payload._id)
+   .then((users) => {
       if (users.length > 0) {
         logger.info(
           `User with username: ${users[0].username} send a valid token`
@@ -24,6 +25,10 @@ module.exports = passportJWT.Strategy(
         logger.info(`User send a invalid token`);
         next(null, false);
       }
-    });
-  })
+    })
+    .catch(error=>{
+      logger.info(error)
+      next(null,false);
+    })
+  }
 );

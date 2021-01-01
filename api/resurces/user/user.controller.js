@@ -16,8 +16,14 @@ function saveUser(user) {
   
 }
 
+function uploadUserImage (_id,image){
+
+  return User.findByIdAndUpdate({_id}, {image},{new:true});
+}
+
 module.exports = {
   getUserById,
   getUserByUsernameAndEmail,
   saveUser,
+  uploadUserImage,
 };

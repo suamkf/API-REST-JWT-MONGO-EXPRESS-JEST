@@ -1,4 +1,4 @@
-const fileType = require("filetype");
+const fileType = require("file-type");
 
 const config = require("../../../config");
 const logger = require("../../../ultis/logger");
