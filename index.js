@@ -39,7 +39,7 @@ app.use(errorHandler.mongoError);
 if (config.server.env === "prod") {
   app.use(errorHandler.prodError);
 } else {
-  app.use(errorHandler.devError);
+  app.use(errorHandler.devError)
 }
 app.use(passport.initialize());
 app.use("/api/users", userRouter);
