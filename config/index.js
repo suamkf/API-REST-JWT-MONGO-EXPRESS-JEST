@@ -14,7 +14,7 @@ const config = {
     saltOrRounds: process.env.SALT_OR_ROUNDS,
   },
   jwt: {
-    expiresIn: "24",
+    expiresIn: "24h",
   },
   S3:{
     validMineType: ["image/png", "image/jpeg", "image/jpg"],

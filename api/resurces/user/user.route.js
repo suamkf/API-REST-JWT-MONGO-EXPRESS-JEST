@@ -3,11 +3,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
+
 const {
   validateUserInfo,
   checkUserInDataBase,
   toLowweCase,
-} = require("./user.validate");
+  } = require("./user.validate");
 const { saveUser, uploadUserImage } = require("./user.controller");
 const { errorHandler } = require("../../libs/errorHandler");
 const config = require("../../../config");
@@ -16,7 +17,10 @@ const { validetaImageFormat } = require("../image/image.validate");
 const { saveImage } = require("../image/image.controller");
 const { craateImageName } = require("../image/image.funtions");
 
-const jwtAuth = passport.authenticate("jwt", { session: false });
+
+const jwtAuthenticate = passport.authenticate("jwt", {
+  session: false,
+});
 
 const userRouter = express.Router();
 
@@ -72,9 +76,15 @@ userRouter.post(
   })
 );
 
+
+
+userRouter.get("/whoami",jwtAuthenticate,  (req, res) => {
+  res.status(200).json({ user: req.user });
+});
+
 userRouter.put(
   "/image",
-  [jwtAuth, validetaImageFormat],
+  [jwtAuthenticate, validetaImageFormat],
   errorHandler((req, res) => {
     logger.info(
       `The user with usermane : ${req.user.username} will try to upload a image`

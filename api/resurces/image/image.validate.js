@@ -6,7 +6,8 @@ const logger = require("../../../ultis/logger");
 const validMineType = config.S3.validMineType;
 
 function validetaImageFormat(req, res, next) {
-  const mineTypeImageBody = req.get("Content-type");
+  const mineTypeImageBody =req.body.get('content-type')
+  console.log(`mineType: ${mineTypeImageBody}`)
   if (!validMineType.includes(mineTypeImageBody)) {
     logger.warn(`Image tyte is not acepted. Must be ${validMineType.join()}`);
     res
