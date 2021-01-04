@@ -7,11 +7,11 @@ const config = {
     env: "dev",
   },
   mongo: {
-    uri: process.env.MONGO_URI,
+    uri: process.env.MONGO_URI || "mongodb://localhost/testNodeJwtJavascriptExpressMongoJoiWinstonAWSFileType",
     userCollection: "user",
   },
   bcrypt: {
-    saltOrRounds: process.env.SALT_OR_ROUNDS,
+    saltOrRounds: process.env.SALT_OR_ROUNDS || "10",
   },
   jwt: {
     expiresIn: "24h",
@@ -20,8 +20,8 @@ const config = {
     validMineType: ["image/png", "image/jpeg", "image/jpg"],
     bucket:"pueba-api-node",
     folder:"image",
-    accessKeyId: process.env.S3_ACCESS_KEY_ID,
-    secretAccessKey: process.env.S3_SECRET_KEY,
+    accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.S3_SECRET_KEY || "",
     saveOnS3:false,
     limit: "8mb",
   }
